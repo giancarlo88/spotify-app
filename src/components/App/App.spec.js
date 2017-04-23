@@ -8,7 +8,13 @@ describe('<App />', () => {
   beforeEach( () => {
     wrapper = shallow(<App/>)
   })
+
+
   it ('should exist', () => {
     expect(wrapper).to.exist
+  })
+
+  it('should render a <div />', () => {
+    expect(wrapper.type()).to.equal('div')
   })
 })
