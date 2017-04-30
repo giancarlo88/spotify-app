@@ -9,7 +9,6 @@ describe('<Form />', () => {
     wrapper = shallow(<Form/>)
   })
 
-
   it ('should exist', () => {
     expect(wrapper).to.exist
   })

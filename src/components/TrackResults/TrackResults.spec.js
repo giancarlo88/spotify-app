@@ -1,16 +1,18 @@
 import React from 'react'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
-import Results from './Results'
+import TrackResults from './TrackResults'
 
-describe('<Results />', () => {
-  const props = {
-    artists: []
+describe('<TrackResults />', () => {
+  const props = { 
+    tracks: [], 
+    selectedTrack: null
   }
   let wrapper
   beforeEach( () => {
-    wrapper = shallow(<Results {...props}/>)
+    wrapper = shallow(<TrackResults {...props} />)
   })
+
 
   it ('should exist', () => {
     expect(wrapper).to.exist

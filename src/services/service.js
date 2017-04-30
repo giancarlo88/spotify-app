@@ -22,14 +22,14 @@ export const SpotifyArtistFetch = query => {
 
 
 export const SpotifyTrackFetch = query => {
-return SpotifyGraphQLClient(config).query(`
-    {
-      track(name: "${query}") {
-        name
-        preview_url
+  return SpotifyGraphQLClient(config).query(`
+      {
+        track(name: "${query}") {
+          name
+          preview_url
+        }
       }
-    }
-  `)
+    `)
   .then(result => Promise.resolve(result.data.track))
   .catch(error => console.warn(error))
 }

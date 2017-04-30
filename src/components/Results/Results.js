@@ -1,5 +1,6 @@
 import React from 'react'
 import './Results.css'
+import TrackResults from '../../containers/TrackResults/TrackResults'
 // import PropTypes from 'prop-types'
 
 const Results = props => {
@@ -8,7 +9,7 @@ const Results = props => {
     <div className='results'>
       <div className='artist-results'>
       <h2>Artist Results</h2>
-      { artists.length && artists.map((artist, index) => {
+      { artists.length > 0 && artists.map((artist, index) => {
         const {name = '', images = []} = artist
         return(
           <div key={index}>
@@ -21,18 +22,9 @@ const Results = props => {
     </div>
     <div className='track-results'>
     <h2>Track Results</h2>
-    {tracks.length && tracks.map((track, index) => {
-      const { name = ''} = track
-        return(
-          <div key={index}>
-            {track.name}
-            <audio controls>
-              <source src={track.preview_url} />
-            </audio>
-          </div>
-        )
-      })
-    }
+    <TrackResults
+      tracks={tracks}
+    />
     </div>
   </div>
   )
