@@ -1,6 +1,7 @@
 
 
 var autoprefixer = require('autoprefixer');
+var preCSS = require('precss')
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -165,6 +166,7 @@ module.exports = {
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [
+      preCSS(),
       autoprefixer({
         browsers: [
           '>1%',
@@ -172,7 +174,7 @@ module.exports = {
           'Firefox ESR',
           'not ie < 9', // React doesn't support IE8 anyway
         ]
-      }),
+      })
     ];
   },
   plugins: [

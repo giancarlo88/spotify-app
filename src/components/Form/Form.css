@@ -1,3 +1,19 @@
+$text-color: #EFF6E0;
+$border-color: #AEC3B0;
+
 .search { 
   text-align: center;
+
+  input[type='text'] {
+    background: none;
+    border: 0;
+    border-bottom: 2px solid $border-color;
+    color: $text-color;
+    font-size: 32px;
+    -webkit-appearance: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
 } 

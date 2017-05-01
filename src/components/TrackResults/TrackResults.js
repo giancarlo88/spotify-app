@@ -12,7 +12,6 @@ const TrackResults = props => {
     tracks 
   } = props
   const selectedTrack = tracks && tracks[selectedTrackIndex]
-  // Todo: alter transition to allow multiple items to be transitioned in.
   return (
     <div className='track-results'>
       <FadeIn>

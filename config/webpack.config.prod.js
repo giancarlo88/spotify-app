@@ -1,6 +1,7 @@
-'use strict';
+
 
 var autoprefixer = require('autoprefixer');
+var preCSS = require('precss')
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -169,6 +170,7 @@ module.exports = {
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [
+      preCSS(),
       autoprefixer({
         browsers: [
           '>1%',

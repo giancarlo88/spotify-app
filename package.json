@@ -9,6 +9,7 @@
     "ignore-styles": "^5.0.1",
     "mocha": "^3.2.0",
     "nock": "^9.0.13",
+    "precss": "^1.4.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-addons-transition-group": "^15.5.2",
