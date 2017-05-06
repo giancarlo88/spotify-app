@@ -3,13 +3,36 @@
   src: url(../../assets/nunitosans.ttf)
 }
 
-body, html {
-  background-color: #000F08;
-  color:#EFF6E0;
+$background-color: #191414;
+$text-color: #EFF6E0;
+$text-highlight-color: #1DB954;
+
+body, html, #root, [data-reactroot] {
+  background-color: $background-color;
+  color: #EFF6E0;
   height: 100%;
   width: 100%;
 }
 
+[data-reactroot] {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
 body * {
+    box-sizing: border-box;
     font-family: 'nunito-sans', sans-serif;
+}
+
+a, [href], a:visited, [href]:visited {
+  color: $text-color;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color .2s ease-out;
+}
+
+a:hover, 
+[href]:hover {
+  color: $text-highlight-color
 }

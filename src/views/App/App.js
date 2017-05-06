@@ -3,10 +3,6 @@ import AppComponent from '../../components/App/App'
 import { SpotifyArtistFetch, SpotifyTrackFetch } from '../../services/service'
 import debounce from '../../utils/debounce'
 
-const merge = (oldState, newState) => {
-  return {...oldState, ...newState}
-}
-
 class AppView extends Component {
   constructor() {
     super()
@@ -17,7 +13,6 @@ class AppView extends Component {
     }
     this.handleQueryUpdate = this.handleQueryUpdate.bind(this)
     this.requestResults = this.requestResults.bind(this)
-    this.debounceQuery = this.debounceQuery.bind(this)
   }
   
   debounceQuery = debounce(query => this.requestResults(query), 500)
@@ -33,26 +28,31 @@ class AppView extends Component {
   requestResults(query) {
     
     const getTrack = SpotifyTrackFetch(query)
-    .then(result => {
-      console.info(result)
-      return result
-    })
+    .then(result => result)
 
     const getArtist = SpotifyArtistFetch(query)
     .then(result => result)
 
     Promise.all([getTrack, getArtist]).then(
+      // N.B.: values is an array of the returned results from the Promises in Promise.all(). In this case it is ['artist', 'track'].
       values => {
         this.setState(oldState => {
-          let { tracks, artists } = oldState
-          values[0] && tracks.push(values[0])
-          values[1] && artists.push(values[1])
-          return {
-            artists: artists, 
-            tracks: tracks
+          let { tracks, artists, query } = oldState
+          if (query){
+            values[0] && tracks.push(values[0])
+            values[1] && artists.push(values[1])
+            return {
+              artists: artists, 
+              tracks: tracks
+            }
+          } else {
+            // Clear the results if there isn't a query
+            return {
+              artists: [], 
+              tracks: []
+            }
           }
         })
-        console.info(values)
       }
     )
   }

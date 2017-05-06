@@ -1,36 +1,34 @@
 import React from 'react'
 import './Results.css'
-import TrackResults from '../../containers/TrackResults/TrackResults'
 import FadeIn from '../../transitions/FadeIn/FadeInComponent'
-// import PropTypes from 'prop-types'
+import ArtistResults from '../../components/ArtistResults/ArtistResults'
+import TrackResults from '../../containers/TrackResults/TrackResults'
+import IntroMessage from '../../components/IntroMessage/IntroMessage'
+import PropTypes from 'prop-types'
 
 const Results = props => {
   const { artists, tracks } = props
+  const className = artists.length === 0 && tracks.length === 0
+    ? 'results no-results'
+    : 'results'
   return (
-    <div className='results'>
-      <div className='artist-results'>
-      <h2>Artist Results</h2>
+    <div className={className}>
       <FadeIn>
-      { artists.length > 0 && artists.map((artist, index) => {
-        const {name = '', images = []} = artist
-        return(
-          <div key={index}>
-            {name}
-            <img src={images.length && images[2].url}/>
-          </div>
-          )
-        })
-      }
+        {artists.length > 0 && <ArtistResults artists={artists} />}
       </FadeIn>
+      <FadeIn>
+        {tracks.length > 0 && <TrackResults tracks={tracks} />}
+      </FadeIn>
+      {artists.length === 0 && tracks.length === 0 && 
+        <IntroMessage/>
+      }
     </div>
-    <div className='track-results'>
-    <h2>Track Results</h2>
-    <TrackResults
-      tracks={tracks}
-    />
-    </div>
-  </div>
   )
+}
+
+Results.propTypes = {
+  artists: PropTypes.array.isRequired,
+  tracks: PropTypes.array.isRequired
 }
 
 export default Results

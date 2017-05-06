@@ -1,0 +1,9 @@
+$text-highlight-color: #1DB954;
+
+.track-result {
+  
+  &.selected {
+    color: $text-highlight-color;
+
+  }
+}

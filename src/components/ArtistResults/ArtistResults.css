@@ -1,0 +1,10 @@
+.artist-results {
+  max-width: 100%;
+  text-align: center;
+
+  &>div {
+    display: flex;
+    justify-content: center;
+    overflow-x: scroll;
+  }
+}

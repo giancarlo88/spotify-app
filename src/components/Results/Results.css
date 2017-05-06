@@ -1,6 +1,11 @@
 .results {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  flex-grow: 2; /* (Property as parent) */
+  justify-content: flex-start;
+
+  &.no-results {
+    justify-content: center;
+  }
 }

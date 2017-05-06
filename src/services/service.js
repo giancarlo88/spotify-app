@@ -13,6 +13,8 @@ export const SpotifyArtistFetch = query => {
         images {
           url
         }
+        href
+        uri
       }
     }
   `)
