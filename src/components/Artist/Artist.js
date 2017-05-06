@@ -1,7 +1,8 @@
 import React from 'react'
-import './ArtistResult.css'
+import PropTypes from 'prop-types'
+import './Artist.css'
 
-const ArtistResult = props => {
+const Artist = props => {
   const { image, name, uri } = props
   return (
   <a target='_blank' href={uri}>
@@ -17,4 +18,10 @@ const ArtistResult = props => {
 )
 }
 
-export default ArtistResult
+Artist.propTypes = { 
+  image: PropTypes.string.isRequired, 
+  name: PropTypes.string.isRequired, 
+  uri: PropTypes.string.isRequired
+}
+
+export default Artist

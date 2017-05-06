@@ -8,4 +8,8 @@
   &.no-results {
     justify-content: center;
   }
+
+  &>div {
+    width: 100%;
+  }
 }

@@ -21,7 +21,9 @@ const AppComponent = props => {
 }
 
 AppComponent.propTypes = { 
-  handleQueryUpdate: PropTypes.func
+  artists: PropTypes.array.isRequired,
+  handleQueryUpdate: PropTypes.func, 
+  tracks: PropTypes.array.isRequired
 }
 
 export default AppComponent

@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import AudioPlayer from '../AudioPlayer/AudioPlayer'
-import TrackResult from '../TrackResult/TrackResult'
+import Track from '../Track/Track'
 import FadeIn from '../../transitions/FadeIn/FadeInComponent'
 import './TrackResults.css'
 
@@ -21,7 +22,7 @@ const TrackResults = props => {
         {tracks.length > 0 && tracks.map((track, index) => {
           const { name = '' } = track
             return (
-              <TrackResult 
+              <Track 
                 handleTrackClick={handleTrackClick}
                 index={index}
                 key={index}
@@ -34,6 +35,12 @@ const TrackResults = props => {
       </FadeIn>
     </div>
   )
+}
+
+TrackResults.propTypes = { 
+  handleTrackClick: PropTypes.func.isRequired,
+  selectedTrackIndex: PropTypes.number,
+  tracks: PropTypes.array.isRequired
 }
 
 export default TrackResults

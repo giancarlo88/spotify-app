@@ -1,6 +1,4 @@
-import { 
-  SpotifyGraphQLClient 
-} from 'spotify-graphql';
+import { SpotifyGraphQLClient } from 'spotify-graphql';
 import config from './config'
 
 

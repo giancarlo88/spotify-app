@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const AudioPlayer = props => {
   const { track } = props
@@ -11,5 +12,10 @@ const AudioPlayer = props => {
       </div>
     ) 
   }
+
+
+AudioPlayer.propTypes = {
+  track: PropTypes.object.isRequired
+}
 
 export default AudioPlayer

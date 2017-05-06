@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './TrackResult.css'
+import './Track.css'
 
-const TrackResult = props => {
+const Track = props => {
   const { handleTrackClick, index, name, selected } = props
   const className = selected ? 'track-result selected' : 'track-result'
   return (
@@ -15,11 +15,11 @@ const TrackResult = props => {
   )
 }
 
-TrackResult.propTypes = {
+Track.propTypes = {
   handleTrackClick: PropTypes.func, 
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired, 
 }
 
-export default TrackResult
+export default Track

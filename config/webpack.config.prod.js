@@ -1,5 +1,3 @@
-
-
 var autoprefixer = require('autoprefixer');
 var preCSS = require('precss')
 var webpack = require('webpack');
@@ -9,6 +7,8 @@ var ManifestPlugin = require('webpack-manifest-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var paths = require('./paths');
 var getClientEnvironment = require('./env');
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 
 
 
@@ -215,7 +215,7 @@ module.exports = {
     // Try to dedupe duplicated modules, if any:
     new webpack.optimize.DedupePlugin(),
     // Minify the code.
-    new webpack.optimize.UglifyJsPlugin({
+    new UglifyJSPlugin({
       compress: {
         screw_ie8: true, // React doesn't support IE8
         warnings: false

@@ -3,8 +3,9 @@ import { expect } from 'chai'
 import { mount } from 'enzyme'
 import TrackResultsContainer from './TrackResults'
 import TrackResultsComponent from '../../components/TrackResults/TrackResults'
+import Track from '../../components/Track/Track'
 
-describe('<TrackResultsComponent />', () => {
+describe('<TrackResultsContainer />', () => {
   const props = { 
     tracks: []
   }
@@ -31,8 +32,9 @@ describe('<TrackResultsComponent />', () => {
         preview_url: 'woeIsMe.mp3'
       }
     ]
-    wrapper.setProps({tracks: tracks})
-    wrapper.find('.track-results').childAt(1).simulate('click')
+    wrapper.setProps({tracks})
+    wrapper.instance().forceUpdate()
+    wrapper.find(Track).at(1).simulate('click')
     expect(wrapper.state().selectedTrackIndex).to.equal(1)
   })
 })

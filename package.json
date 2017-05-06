@@ -1,5 +1,6 @@
 {
   "name": "spotify-app",
+  "homepage": "http://www.ggalliani.com/projects/sa",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,6 +8,7 @@
     "chai": "^3.5.0",
     "enzyme": "^2.8.2",
     "ignore-styles": "^5.0.1",
+    "lru_map": "^0.3.3",
     "mocha": "^3.2.0",
     "nock": "^9.0.13",
     "precss": "^1.4.0",
@@ -16,6 +18,7 @@
     "react-dom": "^15.5.4",
     "react-motion": "^0.5.0",
     "react-test-renderer": "^15.5.4",
+    "sinon": "^2.2.0",
     "spotify-graphql": "^1.4.0"
   },
   "devDependencies": {
@@ -52,6 +55,8 @@
     "promise": "7.1.1",
     "react-dev-utils": "^0.5.2",
     "style-loader": "0.13.1",
+    "uglify-js": "git://github.com/mishoo/UglifyJS2.git#harmony",
+    "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2",

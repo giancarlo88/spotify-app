@@ -3,7 +3,7 @@ import AppComponent from '../../components/App/App'
 import { SpotifyArtistFetch, SpotifyTrackFetch } from '../../services/service'
 import debounce from '../../utils/debounce'
 
-class AppView extends Component {
+class AppContainer extends Component {
   constructor() {
     super()
     this.state = {
@@ -53,8 +53,7 @@ class AppView extends Component {
             }
           }
         })
-      }
-    )
+      })
   }
   render() {
     const { artists, tracks } = this.state
@@ -68,4 +67,4 @@ class AppView extends Component {
   }
 }
 
-export default AppView;
+export default AppContainer;
