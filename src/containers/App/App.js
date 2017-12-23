@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppComponent from '../../components/App/App'
-import { SpotifyArtistFetch, SpotifyTrackFetch } from '../../services/service'
+import { SpotifyArtistFetch, SpotifyTrackFetch, SpotifyAuth } from '../../services/service'
 import debounce from '../../utils/debounce'
 
 class AppContainer extends Component {
@@ -14,7 +14,7 @@ class AppContainer extends Component {
     this.handleQueryUpdate = this.handleQueryUpdate.bind(this)
     this.requestResults = this.requestResults.bind(this)
   }
-  
+
   debounceQuery = debounce(query => this.requestResults(query), 500)
 
   handleQueryUpdate (e) {
@@ -25,12 +25,14 @@ class AppContainer extends Component {
     this.debounceQuery(this.state.query)
   }
 
-  requestResults(query) {
-    
-    const getTrack = SpotifyTrackFetch(query)
+  async requestResults(query) {
+
+    const auth = SpotifyAuth()
+    console.log(auth)
+    const getTrack = SpotifyTrackFetch(query, auth)
     .then(result => result)
 
-    const getArtist = SpotifyArtistFetch(query)
+    const getArtist = SpotifyArtistFetch(query, auth)
     .then(result => result)
 
     Promise.all([getTrack, getArtist]).then(
@@ -42,13 +44,13 @@ class AppContainer extends Component {
             values[0] && tracks.push(values[0])
             values[1] && artists.push(values[1])
             return {
-              artists: artists, 
+              artists: artists,
               tracks: tracks
             }
           } else {
             // Clear the results if there isn't a query
             return {
-              artists: [], 
+              artists: [],
               tracks: []
             }
           }
@@ -58,7 +60,7 @@ class AppContainer extends Component {
   render() {
     const { artists, tracks } = this.state
     return (
-      <AppComponent 
+      <AppComponent
         handleQueryUpdate={this.handleQueryUpdate}
         artists={artists}
         tracks={tracks}
