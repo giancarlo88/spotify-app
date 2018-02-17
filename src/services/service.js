@@ -1,27 +1,14 @@
 import { SpotifyGraphQLClient } from 'spotify-graphql'
 import config from './config'
 
-const makeAuthHeader = (config) => {
-  const b64 = btoa(`${config.clientId}:${config.clientSecret}`)
-  return {
-    Authorization: `Basic ${b64}`,
-    'Access-Control-Allow-Origin': '*'
-  }
-}
-
-export const SpotifyAuth = async () => {
-  const res = await fetch('https://accounts.spotify.com/api/token', {
-    method: 'post',
-    headers: makeAuthHeader(config),
-    credentials: 'include',
-    body: {
-      grant_type: 'client_credentials'
-    }
-  })
-  console.log(res)
-  return {
-    access_token: res.text()
-  }
+export const SpotifyAuth = () => {
+  const environment = process.env.NODE_ENV === 'development' ? 'beta' : 'prod'
+  return fetch(
+    `https://se64y98oq0.execute-api.eu-west-2.amazonaws.com/${environment}/aws-nodejs-dev-getToken`
+  )
+    .then((res) => res.json())
+    .then((res) => ({ accessToken: res.body.input.access_token }))
+    .catch((err) => Promise.reject(err))
 }
 
 export const SpotifyArtistFetch = (query, auth) => {

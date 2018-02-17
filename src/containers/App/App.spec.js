@@ -4,15 +4,15 @@ import { shallow, mount } from 'enzyme'
 import sinon from 'sinon'
 import AppContainer from './App'
 import AppComponent from '../../components/App/App'
+import * as Services from '../../services/service'
 
 describe('<App />', () => {
   let wrapper
-  beforeEach( () => {
-    wrapper = shallow(<AppContainer/>)
+  beforeEach(() => {
+    wrapper = shallow(<AppContainer />)
   })
 
-
-  it ('should exist', () => {
+  it('should exist', () => {
     expect(wrapper).to.exist
   })
 
@@ -23,14 +23,16 @@ describe('<App />', () => {
 
 describe('<App /> (mount)', () => {
   let wrapper
-  beforeEach( () => {
-    wrapper = mount(<AppContainer/>)
+  sinon.stub(Services, 'SpotifyAuth')
+  beforeEach(() => {
+    wrapper = mount(<AppContainer />)
+    // SpotifyAuthStub.reset()
   })
 
   it('should update the query state when the input field has text entered into it', () => {
-      const query = 'Madonna'
-      wrapper.find('input').simulate('change', { target: { value: query } } )
-      expect(wrapper.state('query')).to.equal(query)
+    const query = 'Madonna'
+    wrapper.find('input').simulate('change', { target: { value: query } })
+    expect(wrapper.state('query')).to.equal(query)
   })
 
   it('should call handleQueryUpdate when the text input is changed', () => {
@@ -38,7 +40,7 @@ describe('<App /> (mount)', () => {
     const handleQueryUpdate = sinon.spy(component, 'handleQueryUpdate')
     // Update wrapper to ensure spy is bound to method
     wrapper.update()
-    wrapper.find('input').simulate('change', { target: { value: 'Madonna' } } )
+    wrapper.find('input').simulate('change', { target: { value: 'Madonna' } })
     expect(handleQueryUpdate.callCount).to.be.greaterThan(0)
- })
+  })
 })
